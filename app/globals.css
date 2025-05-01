@@ -170,3 +170,79 @@
     opacity: 0.7;
   }
 }
+
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: #F472B6;
+  --rdp-background-color: #FCE7F3;
+  --rdp-accent-color-dark: #EC4899;
+  --rdp-background-color-dark: #FDF2F8;
+  --rdp-outline: 2px solid var(--rdp-accent-color);
+  --rdp-outline-selected: 3px solid var(--rdp-accent-color);
+  margin: 0;
+}
+
+.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: var(--rdp-background-color);
+}
+
+.rdp-day_selected {
+  background-color: var(--rdp-accent-color) !important;
+}
+
+.rdp-day_selected:hover {
+  background-color: var(--rdp-accent-color-dark) !important;
+}
+
+.rdp-day {
+  transition: all 0.2s ease;
+  border-radius: 50%;
+}
+
+.rdp-day:hover {
+  transform: scale(1.1);
+}
+
+.rdp-day_today {
+  position: relative;
+  font-weight: bold;
+  color: var(--rdp-accent-color);
+}
+
+.rdp-day_today::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: var(--rdp-accent-color);
+  border-radius: 50%;
+}
+
+.rdp-head_cell {
+  font-weight: 600;
+  color: #BE185D;
+}
+
+.rdp-day[aria-label*="Sunday"] {
+  color: #EF4444;
+}
+
+.rdp-day[aria-label*="Saturday"] {
+  color: #3B82F6;
+}
+
+.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: #FDF2F8;
+  transform: scale(1.1);
+}
+
+.calendar-container {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border: 2px solid #FCE7F3;
+}

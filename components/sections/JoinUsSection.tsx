@@ -51,7 +51,7 @@ export default function JoinUsSection() {
         <meta property="og:type" content="website" />
       </Head>
 
-      <section className="w-full pt-8 pb-16" style={{ background: `repeating-linear-gradient(to bottom, #FFF5F9 0px, #FFF5F9 20px, #FCDDE4 20px, #FCDDE4 40px)` }}>
+      <section className="w-full pt-8" style={{ background: `repeating-linear-gradient(to bottom, #FFF5F9 0px, #FFF5F9 20px, #FCDDE4 20px, #FCDDE4 40px)` }}>
         <h1 id="page-title" style={srOnlyStyle}>Live Chat Cafeで働く1日の流れ - 未経験からでも安心のサポート体制</h1>
 
         <div className="container mx-auto px-2 sm:px-4">
@@ -59,9 +59,17 @@ export default function JoinUsSection() {
             <img src="/images/join-us/test1.jpg" alt="Live Chat Cafeライバーの1日の流れ紹介" className="w-full max-w-2xl rounded-2xl shadow-md" aria-labelledby="page-title" />
           </div>
 
-          <article className="relative flex flex-col items-center">
+          <article className="relative flex flex-col items-center pt-24 pb-24 space-y-12">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-[calc(100%-4rem)] w-1 bg-gradient-to-b from-pink-300 to-pink-200" aria-hidden="true" />
+            
+            {/* メインのタイムライン - 一本の縦線で実装 */}
+            <div
+              className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-1"
+              style={{
+                background: "linear-gradient(180deg, transparent 0%, rgba(244, 114, 182, 0.6) 10%, rgba(244, 114, 182, 0.8) 20%, rgba(244, 114, 182, 1) 30%, rgba(244, 114, 182, 1) 70%, rgba(244, 114, 182, 0.8) 80%, rgba(244, 114, 182, 0.6) 90%, transparent 100%)"
+              }}
+              aria-hidden="true"
+            />
 
             {timelineItems.map((item, idx) => (
               <motion.section
@@ -71,9 +79,9 @@ export default function JoinUsSection() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
-                className="relative flex flex-col items-center w-full max-w-4xl pt-12 pb-16"
+                className="relative flex flex-col items-center w-full max-w-4xl"
               >
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-white border-2 border-pink-200 rounded-full w-16 h-16 flex flex-col items-center justify-center shadow-md">
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-white border-2 border-pink-200 rounded-full w-16 h-16 flex flex-col items-center justify-center shadow-md z-10">
                   <Clock className="text-pink-300 w-4 h-4 mb-1" aria-hidden="true" />
                   <time className="text-[#FF6B81] text-sm font-bold">{item.time}</time>
                 </div>
@@ -87,11 +95,11 @@ export default function JoinUsSection() {
                   </div>
 
                   <div className={`relative rounded-2xl p-6 ${item.label === '配信＆休憩' ? 'border border-pink-200' : 'border-2 border-dashed border-pink-300'}`}>
-                    <div className="flex flex-col items-center mb-2">
+                    <div className="flex flex-col items-center mt-4">
                       <h2 className="text-2xl font-bold leading-tight tracking-wide text-center fancy-title">
                         {item.label}
                       </h2>
-                      <span className="mt-2 fancy-en-title">
+                      <span className="mt-2 mb-2 fancy-en-title">
                         {item.labelEn}
                       </span>
                     </div>
