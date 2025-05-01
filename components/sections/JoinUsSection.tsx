@@ -12,7 +12,7 @@ const timelineItems = [
   { time: "22:30", label: "休憩", labelEn: "BREAK TIME", image: "/images/join-us/test9.jpg", description: "配信が一区切りついたら休憩タイム。ドリンクやおやつ、ご飯まで完備♡スタッフさんとおしゃべりしながらリラックス♪" },
   { time: "23:00", label: "配信＆休憩", labelEn: "STREAM & REST", image: "/images/join-us/test11.jpg", description: "休憩を挟みながら退勤時間まで配信！24時間OKだから深夜や早朝も安心♡自分のペースで働けるのが魅力♪" },
   { time: "5:00", label: "配信終了", labelEn: "END STREAM", image: "/images/join-us/test13.jpg", description: "退勤時間が来たら配信終了！部屋をピカピカに清掃して次の子へバトンタッチ♪『きれいな部屋で配信できるって嬉しい！』と好評です♪" },
-  { time: "5:10", label: "着替え＆日報記入", labelEn: "CHANGE & REPORT", image: "/images/join-us/test15.jpg", description: "私服に着替えたら日報を記入。『今日はアドバイスで盛り上がった！』など振り返りもバッチリ♪バスルーム完備だから深夜勤務後もさっぱりして帰れます♡" },
+  { time: "5:10", label: "日報記入", labelEn: "REPORT", image: "/images/join-us/test15.jpg", description: "私服に着替えたら日報を記入。『今日はアドバイスで盛り上がった！』など振り返りもバッチリ♪バスルーム完備だから深夜勤務後もさっぱりして帰れます♡" },
   { time: "5:30", label: "退勤", labelEn: "CLOCK OUT", image: "/images/join-us/test18.jpg", description: "『お疲れさまでした！』と元気に挨拶して退勤。お給料は口座振込で安心。『次のお給料日までまた頑張ろう！』とやる気満タンの締めです♪" }
 ];
 
@@ -51,25 +51,16 @@ export default function JoinUsSection() {
         <meta property="og:type" content="website" />
       </Head>
 
-      <section className="w-full pt-8" style={{ background: `repeating-linear-gradient(to bottom, #FFF5F9 0px, #FFF5F9 20px, #FCDDE4 20px, #FCDDE4 40px)` }}>
+      <section className="w-full pt-[10px]" style={{ background: `repeating-linear-gradient(to bottom, #FFF5F9 0px, #FFF5F9 20px, #FCDDE4 20px, #FCDDE4 40px)` }}>
         <h1 id="page-title" style={srOnlyStyle}>Live Chat Cafeで働く1日の流れ - 未経験からでも安心のサポート体制</h1>
 
         <div className="container mx-auto px-2 sm:px-4">
-          <div className="relative flex justify-center mb-16">
+          <div className="relative flex justify-center">
             <img src="/images/join-us/test1.jpg" alt="Live Chat Cafeライバーの1日の流れ紹介" className="w-full max-w-2xl rounded-2xl shadow-md" aria-labelledby="page-title" />
           </div>
 
-          <article className="relative flex flex-col items-center pt-24 pb-24 space-y-12">
+          <article className="relative flex flex-col items-center space-y-8">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-            
-            {/* メインのタイムライン - 一本の縦線で実装 */}
-            <div
-              className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-1"
-              style={{
-                background: "linear-gradient(180deg, transparent 0%, rgba(244, 114, 182, 0.6) 10%, rgba(244, 114, 182, 0.8) 20%, rgba(244, 114, 182, 1) 30%, rgba(244, 114, 182, 1) 70%, rgba(244, 114, 182, 0.8) 80%, rgba(244, 114, 182, 0.6) 90%, transparent 100%)"
-              }}
-              aria-hidden="true"
-            />
 
             {timelineItems.map((item, idx) => (
               <motion.section
@@ -81,11 +72,6 @@ export default function JoinUsSection() {
                 viewport={{ once: true }}
                 className="relative flex flex-col items-center w-full max-w-4xl"
               >
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-white border-2 border-pink-200 rounded-full w-16 h-16 flex flex-col items-center justify-center shadow-md z-10">
-                  <Clock className="text-pink-300 w-4 h-4 mb-1" aria-hidden="true" />
-                  <time className="text-[#FF6B81] text-sm font-bold">{item.time}</time>
-                </div>
-
                 <div className="relative bg-white rounded-2xl shadow-md p-2 w-full">
                   <div className="absolute top-0 right-0 w-32 h-32">
                     <div className="triangle-stripe-accent w-full h-full" />
@@ -95,15 +81,23 @@ export default function JoinUsSection() {
                   </div>
 
                   <div className={`relative rounded-2xl p-6 ${item.label === '配信＆休憩' ? 'border border-pink-200' : 'border-2 border-dashed border-pink-300'}`}>
-                    <div className="flex flex-col items-center mt-4">
-                      <h2 className="text-2xl font-bold leading-tight tracking-wide text-center fancy-title">
-                        {item.label}
-                      </h2>
-                      <span className="mt-2 mb-2 fancy-en-title">
-                        {item.labelEn}
-                      </span>
+                    <div className="flex items-start gap-4 mb-2">
+                      <div className="flex-shrink-0 bg-white border-2 border-pink-200 rounded-full w-16 h-16 flex flex-col items-center justify-center shadow-md">
+                        <Clock className="text-pink-300 w-4 h-4 mb-1" aria-hidden="true" />
+                        <time className="text-[#FF6B81] text-sm font-bold">{item.time}</time>
+                      </div>
+                      <div className="flex-grow flex flex-col items-center justify-center">
+                        <h2 className="text-2xl font-bold leading-tight tracking-wide text-center fancy-title">
+                          {item.label}
+                        </h2>
+                        <span className="mt-1 fancy-en-title">
+                          {item.labelEn}
+                        </span>
+                      </div>
+                      <div className="flex-shrink-0 w-16"></div>
                     </div>
-                    <div className="border-t border-pink-200 mt-2 mb-4" aria-hidden="true" />
+
+                    <div className="border-t border-pink-200 my-4" aria-hidden="true" />
 
                     <div className="flex flex-col md:flex-row gap-6">
                       <figure className="flex-1">
